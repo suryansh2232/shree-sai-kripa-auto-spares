@@ -4,27 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shree Sai Kripa Auto Spares | Patna's Best Bike Repair</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
     <style>
         :root { --red: #ff3131; --yellow: #ffde59; --black: #0f0f0f; --gray: #1a1a1a; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
         body { font-family: 'Poppins', sans-serif; background: var(--black); color: white; line-height: 1.6; }
 
         /* Navbar */
         .navbar { position: fixed; width: 100%; top: 0; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.95); z-index: 1000; border-bottom: 2px solid var(--red); }
         .logo { font-weight: 700; color: var(--yellow); font-size: 20px; }
-        .nav-links a { color: white; text-decoration: none; margin-left: 20px; font-weight: 600; font-size: 13px; text-transform: uppercase; }
+        .nav-links a { color: white; text-decoration: none; margin-left: 20px; font-weight: 600; font-size: 13px; text-transform: uppercase; transition: 0.3s; }
+        .nav-links a:hover { color: var(--red); }
 
         /* Hero */
         .hero { height: 100vh; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('./images/shop_front.jpeg') center/cover no-repeat; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 20px; }
-        .hero h1 { font-size: clamp(28px, 5vw, 50px); margin-bottom: 20px; }
-        .btn { padding: 15px 30px; border-radius: 5px; text-decoration: none; font-weight: 700; display: inline-block; margin: 10px; transition: 0.3s; }
+        .hero h1 { font-size: clamp(28px, 5vw, 50px); margin-bottom: 20px; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+        .btn { padding: 15px 30px; border-radius: 5px; text-decoration: none; font-weight: 700; display: inline-block; margin: 10px; transition: 0.3s; border: none; cursor: pointer; }
         .btn-red { background: var(--red); color: white; }
         .btn-yellow { background: var(--yellow); color: black; }
+        .btn:hover { transform: scale(1.1); box-shadow: 0 0 20px var(--red); }
 
         /* Sections */
-        section { padding: 80px 10%; }
+        section { padding: 100px 10%; overflow: hidden; }
         .title { text-align: center; margin-bottom: 50px; }
         .title h2 { font-size: 32px; color: var(--yellow); text-transform: uppercase; }
         .title hr { width: 50px; height: 3px; background: var(--red); border: none; margin: 10px auto; }
@@ -36,28 +42,25 @@
         .stat-box { background: var(--gray); padding: 15px; border-radius: 8px; text-align: center; border-bottom: 3px solid var(--red); }
         .stat-box h3 { color: var(--yellow); font-size: 24px; }
 
-        /* Features/Why Choose Us */
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .feature-card { background: var(--gray); padding: 25px; border-radius: 12px; transition: 0.3s; }
-        .feature-card:hover { transform: translateY(-5px); border: 1px solid var(--red); }
-        .feature-card h4 { color: var(--red); margin-bottom: 10px; }
+        /* Services & Features */
+        .grid-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
+        .card { background: var(--gray); border-radius: 12px; overflow: hidden; transition: 0.4s; border: 1px solid #333; }
+        .card:hover { transform: translateY(-10px); border-color: var(--red); box-shadow: 0 10px 30px rgba(255,49,49,0.2); }
+        .card img { width: 100%; height: 200px; object-fit: cover; border-bottom: 3px solid var(--red); }
+        .card-content { padding: 20px; text-align: center; }
 
-        /* Review Grid */
-        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .review-card { background: var(--gray); padding: 20px; border-radius: 12px; position: relative; }
-        .review-card span { color: #ffcc00; display: block; margin-bottom: 10px; }
+        /* Reviews */
+        .review-card { background: var(--gray); padding: 25px; border-radius: 12px; border-left: 5px solid var(--red); transition: 0.3s; }
+        .review-card:hover { background: #222; }
 
-        /* Gallery Grid */
+        /* Gallery */
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
-        .gallery-grid img { width: 100%; border-radius: 10px; aspect-ratio: 1/1; object-fit: cover; transition: 0.3s; cursor: pointer; }
-        .gallery-grid img:hover { transform: scale(1.05); }
-
-        /* Contact & Map */
-        .contact-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .map-box iframe { width: 100%; height: 350px; border-radius: 15px; border: 2px solid #333; }
+        .gallery-grid img { width: 100%; border-radius: 10px; aspect-ratio: 1/1; object-fit: cover; transition: 0.5s; }
+        .gallery-grid img:hover { transform: scale(1.1) rotate(2deg); z-index: 1; }
 
         /* WhatsApp */
-        .whatsapp { position: fixed; bottom: 30px; right: 30px; background: #25d366; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 2000; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        .whatsapp { position: fixed; bottom: 30px; right: 30px; background: #25d366; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 2000; transition: 0.3s; animation: bounce 2s infinite; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
         @media (max-width: 768px) { .nav-links { display: none; } section { padding: 60px 5%; } }
     </style>
@@ -79,7 +82,7 @@
     </nav>
 
     <section class="hero">
-        <div class="hero-content">
+        <div class="hero-content" data-aos="zoom-in" data-aos-duration="1500">
             <div style="background:var(--red); padding:5px 15px; border-radius:5px; display:inline-block; font-weight:700; margin-bottom:20px;">ESTABLISHED 2013</div>
             <h1>Patna's Most Trusted Two-Wheeler Repair & Spares</h1>
             <p>Led by Manoj Kumar Tiwari | Expert Mechanics | Genuine Parts</p>
@@ -89,78 +92,78 @@
     </section>
 
     <section id="about">
-        <div class="title"><h2>About Shree Sai Kripa</h2><hr></div>
+        <div class="title" data-aos="fade-up"><h2>About Shree Sai Kripa</h2><hr></div>
         <div class="about-grid">
-            <div class="about-img"><img src="./images/shop_inside.jpeg" alt="About Shop"></div>
-            <div class="about-text">
+            <div class="about-img" data-aos="fade-right"><img src="./images/shop_inside.jpeg" alt="About Shop"></div>
+            <div class="about-text" data-aos="fade-left">
                 <p>With years of experience in two-wheeler repair and maintenance, Shree Sai Kripa Auto Spares has become Patna's most trusted name. We provide top-quality service using only genuine parts.</p>
                 <div class="stats-grid">
-                    <div class="stat-box"><h3>5000+</h3><p>Bikes Serviced</p></div>
-                    <div class="stat-box"><h3>10+</h3><p>Years Experience</p></div>
-                    <div class="stat-box"><h3>100%</h3><p>Genuine Parts</p></div>
+                    <div class="stat-box" data-aos="flip-left"><h3>5000+</h3><p>Bikes Serviced</p></div>
+                    <div class="stat-box" data-aos="flip-left" data-aos-delay="200"><h3>10+</h3><p>Years Experience</p></div>
+                    <div class="stat-box" data-aos="flip-left" data-aos-delay="400"><h3>100%</h3><p>Genuine Parts</p></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="why" style="background:#0a0a0a;">
-        <div class="title"><h2>Why Choose Us?</h2><hr></div>
-        <div class="features-grid">
-            <div class="feature-card"><h4>Experienced Mechanic</h4><p>20+ years of expertise in two-wheeler repair and maintenance.</p></div>
-            <div class="feature-card"><h4>Genuine Parts Only</h4><p>100% authentic spare parts with warranty guarantee.</p></div>
-            <div class="feature-card"><h4>Affordable Pricing</h4><p>Competitive rates without compromising on quality.</p></div>
-            <div class="feature-card"><h4>Quick Service</h4><p>Fast turnaround time to get you back on the road.</p></div>
+    <section id="services" style="background:#0a0a0a;">
+        <div class="title" data-aos="fade-up"><h2>Our Services</h2><hr></div>
+        <div class="grid-layout">
+            <div class="card" data-aos="fade-up" data-aos-delay="100">
+                <img src="./images/bike_repair.jpeg">
+                <div class="card-content"><h3>General Repair</h3></div>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="300">
+                <img src="./images/engine.png">
+                <div class="card-content"><h3>Engine Overhaul</h3></div>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="500">
+                <img src="./images/wash.png">
+                <div class="card-content"><h3>Bike Washing</h3></div>
+            </div>
         </div>
     </section>
 
-    <section id="services">
-        <div class="title"><h2>Our Services</h2><hr></div>
-        <div class="about-grid">
-            <div style="background:var(--gray); border-radius:12px; overflow:hidden;">
-                <img src="./images/bike_repair.jpeg" style="width:100%; height:200px; object-fit:cover;">
-                <div style="padding:15px; text-align:center;"><h3>General Repair</h3></div>
-            </div>
-            <div style="background:var(--gray); border-radius:12px; overflow:hidden;">
-                <img src="./images/engine.png" style="width:100%; height:200px; object-fit:cover;">
-                <div style="padding:15px; text-align:center;"><h3>Engine Overhaul</h3></div>
-            </div>
-            <div style="background:var(--gray); border-radius:12px; overflow:hidden;">
-                <img src="./images/wash.png" style="width:100%; height:200px; object-fit:cover;">
-                <div style="padding:15px; text-align:center;"><h3>Bike Washing</h3></div>
-            </div>
+    <section id="why">
+        <div class="title" data-aos="fade-up"><h2>Why Choose Us?</h2><hr></div>
+        <div class="grid-layout">
+            <div class="feature-card" data-aos="zoom-in"><h4>Experienced Mechanic</h4><p>20+ years of expertise in two-wheeler repair.</p></div>
+            <div class="feature-card" data-aos="zoom-in" data-aos-delay="200"><h4>Genuine Parts Only</h4><p>100% authentic parts with warranty.</p></div>
+            <div class="feature-card" data-aos="zoom-in" data-aos-delay="400"><h4>Affordable Pricing</h4><p>Competitive rates without compromising quality.</p></div>
+            <div class="feature-card" data-aos="zoom-in" data-aos-delay="600"><h4>Quick Service</h4><p>Fast turnaround to get you back on road.</p></div>
         </div>
     </section>
 
     <section id="reviews" style="background:#0a0a0a;">
-        <div class="title"><h2>Customer Reviews</h2><hr><p>5.0 Rating from 500+ reviews</p></div>
-        <div class="reviews-grid">
-            <div class="review-card"><span>⭐⭐⭐⭐⭐</span><p>"Best bike repair shop in Patna! Manoj ji fixed my engine problem quickly."</p><strong>- Rajesh Kumar</strong></div>
-            <div class="review-card"><span>⭐⭐⭐⭐⭐</span><p>"Genuine spare parts and excellent service. My bike runs like new."</p><strong>- Amit Singh</strong></div>
-            <div class="review-card"><span>⭐⭐⭐⭐⭐</span><p>"Very satisfied with the bike washing. They take care of every detail."</p><strong>- Priya Sharma</strong></div>
+        <div class="title" data-aos="fade-up"><h2>Customer Reviews</h2><hr></div>
+        <div class="grid-layout">
+            <div class="review-card" data-aos="fade-right"><span>⭐⭐⭐⭐⭐</span><p>"Best bike repair shop in Patna! Manoj ji fixed my engine problem quickly."</p><strong>- Rajesh Kumar</strong></div>
+            <div class="review-card" data-aos="fade-up"><span>⭐⭐⭐⭐⭐</span><p>"Genuine spare parts and excellent service. My bike runs like new."</p><strong>- Amit Singh</strong></div>
+            <div class="review-card" data-aos="fade-left"><span>⭐⭐⭐⭐⭐</span><p>"Very satisfied with the bike washing. They take care of every detail."</p><strong>- Priya Sharma</strong></div>
         </div>
     </section>
 
     <section id="gallery">
-        <div class="title"><h2>Our Work Gallery</h2><hr></div>
+        <div class="title" data-aos="fade-up"><h2>Our Work Gallery</h2><hr></div>
         <div class="gallery-grid">
-            <img src="./images/shop_front.jpeg">
-            <img src="./images/shop_inside.jpeg">
-            <img src="./images/shop_inside2.jpeg">
-            <img src="./images/bike_repair.jpeg">
+            <img src="./images/shop_front.jpeg" data-aos="zoom-in">
+            <img src="./images/shop_inside.jpeg" data-aos="zoom-in" data-aos-delay="200">
+            <img src="./images/shop_inside2.jpeg" data-aos="zoom-in" data-aos-delay="400">
+            <img src="./images/bike_repair.jpeg" data-aos="zoom-in" data-aos-delay="600">
         </div>
     </section>
 
     <section id="contact">
-        <div class="contact-container">
-            <div style="background:var(--gray); padding:30px; border-radius:15px;">
+        <div class="about-grid">
+            <div style="background:var(--gray); padding:30px; border-radius:15px;" data-aos="fade-right">
                 <h3 style="color:var(--red); margin-bottom:15px;">VISIT OUR SHOP</h3>
                 <p>📍 Ashiana - Digha Road, Rajeev Nagar, Patna</p>
                 <p>📞 9334837808</p>
                 <p>⏰ Mon-Sat: 9AM - 8PM</p>
                 <p style="margin-top:10px;"><strong>Plus Code:</strong> J3GM+8VX Patna</p>
             </div>
-            <div class="map-box">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3597.4665492425624!2d85.084747!3d25.6258578!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjXCsDM3JzMzLjEiTiA4NcKwMDUnMDUuMSJF!5e0!3m2!1sen!2sin!4v1709485000000!5m2!1sen!2sin"></iframe>
+            <div data-aos="fade-left">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3597.4665492425624!2d85.084747!3d25.6258578!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjXCsDM3JzMzLjEiTiA4NcKwMDUnMDUuMSJF!5e0!3m2!1sen!2sin!4v1709485000000!5m2!1sen!2sin" width="100%" height="350" style="border:0; border-radius:15px;" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </div>
     </section>
@@ -168,6 +171,14 @@
     <footer style="text-align:center; padding:30px; border-top:1px solid #333; color:#666; font-size:12px;">
         © 2026 Shree Sai Kripa Auto Spares | Patna, Bihar
     </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000, // Animation ki speed (1 second)
+            once: true,     // Animation sirf ek baar hogi jab aap scroll karenge
+        });
+    </script>
 
 </body>
 </html>
