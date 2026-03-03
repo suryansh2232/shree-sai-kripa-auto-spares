@@ -3,170 +3,273 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shree Sai Kripa Auto Spares | Patna</title>
+<title>Shree Sai Kripa Auto Spares</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #0f0f0f;
-    color: white;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #111;
+  color: white;
 }
 
-header {
-    background: black;
-    padding: 20px;
-    text-align: center;
-    border-bottom: 3px solid red;
+/* Navbar */
+.navbar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  padding: 15px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
 }
 
-h1 {
-    margin: 0;
-    color: orange;
+.navbar a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+  font-weight: 500;
 }
 
+.navbar a:hover {
+  color: #ff4d00;
+}
+
+/* Hero */
 .hero {
-    text-align: center;
-    padding: 40px 20px;
+  height: 100vh;
+  background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('images/shop_front.jpeg') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
 }
 
-.hero h2 {
-    color: red;
+.hero h1 {
+  font-size: 45px;
+  max-width: 800px;
 }
 
-button {
-    padding: 12px 20px;
-    margin: 10px;
-    border: none;
-    background: orange;
-    color: black;
-    font-weight: bold;
-    cursor: pointer;
+.hero p {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #ccc;
 }
 
+.btn {
+  display: inline-block;
+  margin: 20px 10px;
+  padding: 12px 25px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.primary-btn {
+  background: #ff4d00;
+  color: white;
+}
+
+.secondary-btn {
+  border: 2px solid #ff4d00;
+  color: #ff4d00;
+}
+
+/* Section */
 .section {
-    padding: 40px 20px;
-    text-align: center;
+  padding: 80px 50px;
+}
+
+.section h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 32px;
+}
+
+/* About */
+.about {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.about img {
+  width: 100%;
+  max-width: 450px;
+  border-radius: 10px;
+}
+
+.about-text {
+  max-width: 500px;
+}
+
+/* Services */
+.services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
 }
 
 .card {
-    background: #1a1a1a;
-    padding: 20px;
-    margin: 15px;
-    border-radius: 10px;
+  background: #1a1a1a;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: 0.3s;
 }
 
-.footer {
-    background: black;
-    text-align: center;
-    padding: 20px;
-    border-top: 3px solid red;
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
 }
 
-.whatsapp {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: green;
-    color: white;
-    padding: 15px;
-    border-radius: 50%;
-    text-decoration: none;
+.card-content {
+  padding: 20px;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* Why Choose */
+.why {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+  text-align: center;
+}
+
+/* Testimonials */
+.testimonials {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+  gap: 20px;
+}
+
+.testimonial-card {
+  background: #1a1a1a;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* Contact */
+.contact iframe {
+  width: 100%;
+  height: 300px;
+  border: 0;
+  border-radius: 10px;
+}
+
+footer {
+  background: #000;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+}
+
+/* Mobile */
+@media(max-width:768px){
+  .navbar {
+    padding: 15px 20px;
+  }
+  .hero h1 {
+    font-size: 30px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<header>
-    <h1>Shree Sai Kripa Auto Spares</h1>
-    <p>Patna’s Trusted Two-Wheeler Repair & Spare Parts Shop</p>
-</header>
-
-<!-- HERO SECTION UPDATED -->
-<div class="hero">
-    <h2>Bike Kharab? 30 Minute Diagnosis – Fast & Trusted Service in Patna</h2>
-    <p>Specialist in Royal Enfield, Apache, Activa 6G, Splendor & More</p>
-    <button onclick="window.location.href='tel:9334837808'">Call Now</button>
-    <button onclick="window.open('https://www.google.com/maps?q=25.6258578,85.0847470')">Get Directions</button>
+<div class="navbar">
+  <div><strong>Shree Sai Kripa</strong></div>
+  <div>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+  </div>
 </div>
 
-<!-- SERVICES -->
-<div class="section">
-    <h2>Our Services</h2>
+<section class="hero">
+  <div>
+    <h1>Patna's Most Trusted Two-Wheeler Repair & Spare Parts Shop</h1>
+    <p>Expert Mechanics | Genuine Parts | Fast Service</p>
+    <a href="tel:9334837808" class="btn primary-btn">Call Now: 9334837808</a>
+    <a href="#contact" class="btn secondary-btn">Get Directions</a>
+  </div>
+</section>
 
+<section class="section about" id="about">
+  <img src="images/shop_inside.jpeg" alt="Shop Inside">
+  <div class="about-text">
+    <h2>10+ Years Experience</h2>
+    <p>Over 5000+ Bikes Serviced with trusted expertise and customer satisfaction.</p>
+  </div>
+</section>
+
+<section class="section" id="services">
+  <h2>Our Services</h2>
+  <div class="services">
     <div class="card">
-        <h3>Complete Bike Repair</h3>
-        <p>All types of two-wheeler repair & servicing.</p>
+      <img src="images/bike_repair.jpeg">
+      <div class="card-content"><h3>Complete Bike Repair</h3></div>
     </div>
-
     <div class="card">
-        <h3>Engine Repair & Overhaul</h3>
-        <p>Professional engine diagnosis and complete work.</p>
+      <div class="card-content"><h3>Engine Repair & Overhaul</h3></div>
     </div>
-
     <div class="card">
-        <h3>Genuine Spare Parts</h3>
-        <p>Original parts available for Royal Enfield, Apache, Splendor, Activa & more.</p>
+      <div class="card-content"><h3>Genuine Spare Parts</h3></div>
     </div>
-
     <div class="card">
-        <h3>Bike Washing Service</h3>
-        <p>High quality cleaning and polishing.</p>
+      <div class="card-content"><h3>Bike Washing Service</h3></div>
     </div>
-</div>
+  </div>
+</section>
 
-<!-- BIKES WE SERVICE -->
-<div class="section">
-    <h2>Bikes We Service</h2>
-    <p>Royal Enfield | TVS Apache | Honda Activa 6G | Hero Splendor | Bajaj Pulsar</p>
-</div>
+<section class="section">
+  <h2>Why Choose Us</h2>
+  <div class="why">
+    <div>✔ Genuine Parts Only</div>
+    <div>✔ Expert Mechanics</div>
+    <div>✔ Affordable Pricing</div>
+  </div>
+</section>
 
-<!-- WHY CHOOSE US -->
-<div class="section">
-    <h2>Why Choose Us?</h2>
-
-    <div class="card">
-        <h3>✔ Experienced Mechanic</h3>
-        <p>Years of hands-on experience in two-wheeler repair.</p>
+<section class="section">
+  <h2>Customer Reviews</h2>
+  <div class="testimonials">
+    <div class="testimonial-card">
+      ⭐⭐⭐⭐⭐<br>Excellent service and genuine parts.
     </div>
-
-    <div class="card">
-        <h3>✔ Genuine Spare Parts</h3>
-        <p>Original parts available at affordable prices.</p>
+    <div class="testimonial-card">
+      ⭐⭐⭐⭐⭐<br>Fast repair and affordable pricing.
     </div>
+  </div>
+</section>
 
-    <div class="card">
-        <h3>✔ Quick Service</h3>
-        <p>Fast diagnosis and minimal waiting time.</p>
-    </div>
-</div>
+<section class="section contact" id="contact">
+  <h2>Contact Us</h2>
+  <p>Ashiana - Digha Road, near Thana, Rajeev Nagar, Patna, Bihar 800025</p>
+  <p>📞 9334837808</p>
+  <iframe src="https://maps.google.com/maps?q=Patna&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
+</section>
 
-<!-- REVIEWS -->
-<div class="section">
-    <h2>Customer Reviews</h2>
-    <p>⭐⭐⭐⭐⭐ 4.9/5 Rated by Local Customers</p>
-    <p>"Best bike repair shop in Rajeev Nagar!"</p>
-    <p>"Very honest and affordable service."</p>
-</div>
-
-<!-- LOCATION -->
-<div class="section">
-    <h2>Visit Us</h2>
-    <p>Ashiana - Digha Road, near Thana, Rajeev Nagar, Patna, Bihar 800025</p>
-
-    <iframe 
-    src="https://www.google.com/maps?q=25.6258578,85.0847470&output=embed"
-    width="100%" height="300" style="border:0;">
-    </iframe>
-</div>
-
-<div class="footer">
-    <p>Owner: Manoj Kumar Tiwari</p>
-    <p>Contact: 9334837808</p>
-</div>
-
-<a class="whatsapp" href="https://wa.me/919334837808" target="_blank">WA</a>
+<footer>
+  © 2026 Shree Sai Kripa Auto Spares | All Rights Reserved
+</footer>
 
 </body>
 </html>
