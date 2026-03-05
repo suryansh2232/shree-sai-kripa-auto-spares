@@ -9,52 +9,51 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <style>
-        :root { --red: #ff3131; --yellow: #ffde59; --black: #0a0a0a; --card-bg: #111; }
+        :root { --red: #ff3131; --yellow: #ffde59; --black: #0a0a0a; --card-bg: #121212; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; overflow-x: hidden; }
         body { font-family: 'Poppins', sans-serif; background: var(--black); color: white; line-height: 1.6; }
 
-        /* Navigation */
         .navbar { position: fixed; width: 100%; top: 0; padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.95); backdrop-filter: blur(15px); z-index: 1000; border-bottom: 2px solid var(--red); }
         .logo { font-weight: 700; color: var(--yellow); font-size: 22px; }
         .nav-links a { color: white; text-decoration: none; margin-left: 25px; font-weight: 600; font-size: 14px; text-transform: uppercase; }
 
-        /* Hero Section */
         .hero { height: 100vh; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('./images/shop_front.jpeg') center/cover no-repeat; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 20px; }
-        .btn { padding: 18px 40px; border-radius: 8px; text-decoration: none; font-weight: 700; display: inline-block; margin: 10px; transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; }
+        .hero h1 { font-size: clamp(30px, 5vw, 60px); font-weight: 700; margin-bottom: 20px; }
+        
+        .btn { padding: 18px 40px; border-radius: 8px; text-decoration: none; font-weight: 700; display: inline-block; margin: 10px; transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; border: none; }
         .btn-red { background: var(--red); color: white; }
         .btn-yellow { background: var(--yellow); color: black; }
         .btn:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(255,49,49,0.4); }
 
-        /* Smooth Image Lift & Pop Effects */
         section { padding: 100px 10%; }
         .title { text-align: center; margin-bottom: 60px; }
-        .title h2 { font-size: 36px; color: var(--yellow); }
-        .lift-img { width: 100%; border-radius: 15px; transition: 0.6s ease; cursor: pointer; border: 1px solid #333; }
-        .lift-img:hover { transform: translateY(-20px); box-shadow: 0 30px 60px rgba(0,0,0,0.5); }
+        .title h2 { font-size: 36px; color: var(--yellow); letter-spacing: 2px; }
+        
+        /* Smooth 3D Lift Animation */
+        .lift-img { width: 100%; border-radius: 15px; transition: 0.6s cubic-bezier(0.25, 1, 0.5, 1); cursor: pointer; border: 1px solid #333; }
+        .lift-img:hover { transform: translateY(-20px) rotateX(2deg); box-shadow: 0 30px 60px rgba(0,0,0,0.6); }
 
-        /* Service Cards */
         .grid-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        
+        /* Service Pop Effect */
         .service-card { background: var(--card-bg); border-radius: 20px; overflow: hidden; transition: 0.5s; border: 1px solid #222; }
         .service-card:hover { transform: scale(1.05); border-color: var(--red); }
         .service-card img { width: 100%; height: 250px; object-fit: cover; transition: 0.5s; }
-        .service-card:hover img { transform: scale(1.1); }
+        .service-card:hover img { transform: scale(1.1); filter: brightness(1.1); }
 
-        /* Why Choose Us Features */
-        .feature-card { background: #111; padding: 35px; border-radius: 15px; border-bottom: 4px solid var(--red); transition: 0.3s; }
-        .feature-card:hover { background: #1a1a1a; }
-        .feature-card h4 { color: var(--yellow); margin-bottom: 15px; }
+        .feature-card { background: #111; padding: 35px; border-radius: 15px; border-bottom: 4px solid var(--red); transition: 0.4s; }
+        .feature-card:hover { transform: translateY(-10px); background: #181818; }
+        .feature-card h4 { color: var(--yellow); margin-bottom: 15px; font-size: 22px; }
 
-        /* Visit Shop Box */
-        .contact-box { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; background: #0c0c0c; padding: 50px; border-radius: 25px; border: 1px solid #222; }
-        .contact-item { text-decoration: none; color: white; display: block; margin-bottom: 25px; transition: 0.3s; }
+        /* Professional Contact Box */
+        .contact-box { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; background: #0c0c0c; padding: 50px; border-radius: 30px; border: 1px solid #222; }
+        .contact-item { text-decoration: none; color: white; display: flex; align-items: center; margin-bottom: 30px; transition: 0.3s; }
         .contact-item:hover { transform: translateX(10px); color: var(--yellow); }
-        .icon-box { display: inline-block; width: 45px; height: 45px; background: var(--red); border-radius: 10px; text-align: center; line-height: 45px; margin-right: 15px; font-size: 18px; color: white; }
+        .icon-svg { width: 50px; height: 50px; background: var(--red); padding: 12px; border-radius: 12px; margin-right: 20px; flex-shrink: 0; fill: white; }
 
-        /* Map Box Fix */
         .map-frame { border-radius: 20px; border: 2px solid var(--red); overflow: hidden; height: 400px; background: #000; }
 
-        /* WhatsApp Pulse */
         .whatsapp { position: fixed; bottom: 40px; right: 40px; background: #25d366; width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 2000; animation: pulse-green 2s infinite; }
         @keyframes pulse-green { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
 
@@ -64,7 +63,7 @@
 <body>
 
     <a href="https://wa.me/919334837808" class="whatsapp" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="35">
+        <svg viewBox="0 0 448 512" width="35" fill="white"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.1 0-65.6-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.1-16.4-14.6-27.4-32.6-30.6-38.1-3.2-5.6-.3-8.6 2.5-11.4 2.5-2.5 5.5-6.5 8.3-9.7 2.8-3.2 3.7-5.5 5.6-9.2 1.9-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.8 23.5 9.2 31.5 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
     </a>
 
     <nav class="navbar">
@@ -81,9 +80,9 @@
         <div class="hero-content" data-aos="zoom-out">
             <div style="background:var(--red); padding:6px 18px; border-radius:50px; display:inline-block; font-weight:700; margin-bottom:20px; font-size:13px;">ESTABLISHED 2000</div>
             <h1>Patna's Most Trusted<br><span style="color:var(--yellow)">Two-Wheeler Repair Shop</span></h1>
-            <p>Expert Servicing | Genuine Parts | Reliable Maintenance by Manoj Kumar Tiwari</p>
-            <a href="tel:9334837808" class="btn btn-red">📞 CALL NOW</a>
-            <a href="https://www.google.com/maps/dir/?api=1&destination=25.6258578,85.0847470" class="btn btn-yellow" target="_blank">📍 GET DIRECTIONS</a>
+            <p>Expert Servicing | Genuine Parts | Affordable Maintenance by Manoj Kumar Tiwari</p>
+            <a href="tel:9334837808" class="btn btn-red">CALL NOW</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=25.6258578,85.0847470" class="btn btn-yellow" target="_blank">GET DIRECTIONS</a>
         </div>
     </section>
 
@@ -92,8 +91,8 @@
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 50px; align-items: center;">
             <img src="./images/shop_inside.jpeg" class="lift-img" data-aos="fade-right">
             <div data-aos="fade-left">
-                <h3 style="color:var(--red); font-size:28px; margin-bottom:15px;">25+ Years of Technical Excellence</h3>
-                <p>Since 2000, we have been the go-to destination for bike owners in Rajeev Nagar, Patna. Our commitment to 100% genuine parts and expert mechanics sets us apart.</p>
+                <h3 style="color:var(--red); font-size:28px; margin-bottom:15px;">25+ Years of Service</h3>
+                <p>Since 2000, <strong>Shree Sai Kripa Auto Spares</strong> has been serving the bike owners of Rajeev Nagar and beyond. We focus on quality and customer satisfaction above all else.</p>
                 <div style="display:flex; gap:15px; margin-top:20px;">
                     <div style="flex:1; background:#111; padding:20px; border-radius:10px; border-bottom:3px solid var(--yellow); text-align:center;"><h3>5000+</h3><p>Bikes</p></div>
                     <div style="flex:1; background:#111; padding:20px; border-radius:10px; border-bottom:3px solid var(--yellow); text-align:center;"><h3>100%</h3><p>Genuine</p></div>
@@ -105,19 +104,19 @@
     <section id="why" style="background:#050505;">
         <div class="title" data-aos="fade-up"><h2>Why Choose Us?</h2><hr style="width:60px; height:4px; background:var(--red); border:none; margin:15px auto;"></div>
         <div class="grid-layout">
-            <div class="feature-card" data-aos="fade-up"><h4>Experienced Mechanic</h4><p>20+ years of expertise in professional two-wheeler repair and maintenance.</p></div>
-            <div class="feature-card" data-aos="fade-up" data-aos-delay="200"><h4>Genuine Parts Only</h4><p>100% authentic spare parts with warranty guarantee for all brands.</p></div>
-            <div class="feature-card" data-aos="fade-up" data-aos-delay="400"><h4>Affordable Pricing</h4><p>Competitive rates without compromising on quality or genuine parts.</p></div>
-            <div class="feature-card" data-aos="fade-up" data-aos-delay="600"><h4>Quick Service</h4><p>Fast turnaround time to get you back on the road safely.</p></div>
+            <div class="feature-card" data-aos="fade-up"><h4>Experienced Mechanic</h4><p>20+ years of expertise in professional repair.</p></div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="200"><h4>Genuine Parts Only</h4><p>100% authentic spare parts with warranty.</p></div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="400"><h4>Affordable Pricing</h4><p>Best rates without compromising on quality.</p></div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="600"><h4>Quick Service</h4><p>Fast turnaround time to get you back on the road.</p></div>
         </div>
     </section>
 
     <section id="services">
-        <div class="title" data-aos="fade-up"><h2>Our Professional Services</h2><hr style="width:60px; height:4px; background:var(--red); border:none; margin:15px auto;"></div>
+        <div class="title" data-aos="fade-up"><h2>Our Services</h2><hr style="width:60px; height:4px; background:var(--red); border:none; margin:15px auto;"></div>
         <div class="grid-layout">
             <div class="service-card" data-aos="zoom-in">
                 <img src="./images/bike_repair.jpeg">
-                <div style="padding:20px; text-align:center;"><h3>General Servicing</h3></div>
+                <div style="padding:20px; text-align:center;"><h3>General Repair</h3></div>
             </div>
             <div class="service-card" data-aos="zoom-in" data-aos-delay="200">
                 <img src="./images/engine.png">
@@ -135,24 +134,30 @@
         <div class="contact-box">
             <div data-aos="fade-right">
                 <a href="https://www.google.com/maps/dir/?api=1&destination=25.6258578,85.0847470" class="contact-item" target="_blank">
-                    <span class="icon-box" style="background:var(--yellow); color:black;">📍</span>
-                    <strong>VISIT US (CLICK TO NAVIGATE)</strong>
-                    <p>Ashiana - Digha Road, Near Thana, Rajeev Nagar, Patna, Bihar 800025</p>
+                    <svg class="icon-svg" style="background:var(--yellow); fill:black;" viewBox="0 0 384 512"><path d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"/></svg>
+                    <div>
+                        <strong>VISIT US (CLICK TO NAVIGATE)</strong>
+                        <p>Ashiana - Digha Road, Near Thana, Rajeev Nagar, Patna, Bihar 800025</p>
+                    </div>
                 </a>
                 <a href="tel:9334837808" class="contact-item">
-                    <span class="icon-box">📞</span>
-                    <strong>CALL US NOW</strong>
-                    <p>+91 9334837808 (Manoj Kumar Tiwari)</p>
+                    <svg class="icon-svg" viewBox="0 0 512 512"><path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"/></svg>
+                    <div>
+                        <strong>CALL US NOW</strong>
+                        <p>+91 9334837808 (Manoj Kumar Tiwari)</p>
+                    </div>
                 </a>
                 <div class="contact-item">
-                    <span class="icon-box" style="background:#222;">⏰</span>
-                    <strong>WORKING HOURS</strong>
-                    <p>Mon - Sat: 9:00 AM - 8:00 PM<br>Sunday: 10:00 AM - 3:00 PM</p>
+                    <svg class="icon-svg" style="background:#222;" viewBox="0 0 512 512"><path d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.3 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/></svg>
+                    <div>
+                        <strong>WORKING HOURS</strong>
+                        <p>Mon - Sat: 9:00 AM - 8:00 PM<br>Sun: 10:00 AM - 3:00 PM</p>
+                    </div>
                 </div>
             </div>
             <div class="map-frame" data-aos="fade-left">
                 <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d115.123!2d85.084747!3d25.6258578!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ed57f000000001%3A0x0!2zMjXCsDM3JzMzLjEiTiA4NcKwMDUnMDUuMSJF!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3597.106200000000!2d85.084747!3d25.625858!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjXCsDM3JzMzLjEiTiA4NcKwMDUnMDUuMSJF!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
                     width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </div>
